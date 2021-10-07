@@ -18,28 +18,53 @@ app.get('/user', (req, res) => {
 
 
 //Buscar um usuario com um ID
-app.get('/user:id', (req, res) => {
-    res.send(`GET WITH ID: ${req.params.id}`)//retornando uma respota com o id passado como parametro
+app.get('/user/:id', (req, res) => {
+    let uid =  req.params.id//uid recebe o id da requisição
+
+    user = users.filter((user) => {//passando a lista users com parametro user
+        return user.id == uid//verificando se o parametro = lista.id == uid
+    }).pop()
+
+    res.send(JSON.stringify(user))
 })
 
-//Criar um novo usuario
+//Cadastrar um novo usuario 
 app.post('/user', (req, res) => {
     let u = req.body//recebendo requisição no formato json
     console.log(u)//imprimindo 
-    users.push(new User(u.id, u.nome, u.email))//Criando umnovo objeto e adicionando os valores recebido na classe User
+    users.push(new User(u.id, u.nome, u.email))//Criando um novo objeto e adicionando os valores recebido no construtor da classe User e PUSH NA LISTA USERS
 
     res.send("Inserido com sucesso!")
 })
 
 
 //Atualizar um usuario existente  com um ID
-app.put('/user:id', (req, res) => {
-    res.send("UPDATE")
+app.put('/user/:id', (req, res) => {
+
+    let uid = req.params.id
+    let u = req.body
+
+    user = users.filter((user) => {
+        return user.id == uid
+    }).pop()
+
+    user.nome = u.nome
+    user.email = u.email
+
+
+    res.send(JSON.stringify(user))
 })
 
 
 //Deletar um usuario existente com um ID
-app.delete('/user:id', (req, res) => {
+app.delete('/user/:id', (req, res) => {
+    let uid = req.params.id
+
+    for(let i = 0; i< users.length; i++){
+        if(users[i].id == uid){
+            users.splice(i, 1)
+        }
+    }
     res.send("DELETE")
 })
 
