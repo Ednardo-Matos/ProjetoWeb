@@ -1,0 +1,25 @@
+{
+  "name": "projeto-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ednardo-Matos/ProjetoWeb.git"
+  },
+  "author": "Ednardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ednardo-Matos/ProjetoWeb/issues"
+  },
+  "homepage": "https://github.com/Ednardo-Matos/ProjetoWeb#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13",
+    "save-dev": "0.0.1-security"
+  }
+}
