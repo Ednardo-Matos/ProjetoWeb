@@ -6,3 +6,4 @@ class Account {
         this.profile = undefined
     }
 }
+module.export =  Account
