@@ -19,7 +19,9 @@
   "homepage": "https://github.com/Ednardo-Matos/ProjetoWeb#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mysql2": "^2.3.0",
     "nodemon": "^2.0.13",
-    "save-dev": "0.0.1-security"
+    "save-dev": "0.0.1-security",
+    "sequelize": "^6.7.0"
   }
 }
