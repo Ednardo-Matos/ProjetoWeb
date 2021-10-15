@@ -1,11 +1,20 @@
-class User {//class
+const sequelize = require('../database')
+const { Datatypes, Model, DataTypes } = require('sequelize')
 
-    constructor(id, nome, email){//construtor
-        this.id = id
-        this.nome = nome
-        this.email = email
+class User extends Model{}//ttras um conjunto de atributos cria um ID automatico
+   
+User.init({
+    nome: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
-
-
-
-} module.exports = User // exportar a classe
+},{
+    sequelize,
+    modelName: 'User',
+    tableName: 'users'//nome da tabela
+})
+module.exports = User
