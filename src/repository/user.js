@@ -1,10 +1,16 @@
+const User = require('../model/user')//Importando a classe user
+
 class UserRepository {
     constructor(){//construtor recebendo uma lista
         this.users = []
     }
 
-    insert(user){
-        this.users.push(user)
+    insert(obj){  
+        const user = User.create({//Criando um novo objeto e adicionando os valores recebido no construtor da classe User
+            nome: obj.nome,
+            email: obj.email
+        })
+        return user;
 
     }
 
@@ -37,7 +43,8 @@ class UserRepository {
     }
 
     findAll(){
-        return this.users
+        return User.findAll()
     }
 }
+
 module.exports = UserRepository

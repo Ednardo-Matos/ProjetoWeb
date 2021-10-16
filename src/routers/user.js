@@ -1,22 +1,18 @@
 const express = require('express')
 const router = express.Router()
-
-const UserRepository = require('../repository/user')//Importando a classe UserRepository
 const User = require('../model/user')//Importando a classe user
+const UserRepository = require('../repository/user')//Importando a classe UserRepository
 
 let uRepo = new UserRepository()
 
 
-
-
-
-
-
 //Buscar todos os usuarios
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
+
+    const users = await User.findAll()
     resp = {
         status: `OK`,
-        data: uRepo.findAll()
+        data: users
     }
 
     res.send(JSON.stringify(resp))//Pegar a lista users e gera o json dela
@@ -45,10 +41,12 @@ router.get('/:id', (req, res) => {
 
 
 //Cadastrar um novo usuario 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     let u = req.body//recebendo requisição no formato json
 
-    if(u.id == undefined || u.nome == undefined || u.email == undefined ){
+
+
+    if(u.nome == undefined || u.email == undefined ){
         resp = {
             status: `ERRO`,
             description: `User JSON must be provided.`
@@ -56,10 +54,11 @@ router.post('/', (req, res) => {
         res.status(404).send(JSON.stringify(resp))
     }
 
-    uRepo.insert(new User(u.id, u.nome, u.email))//Criando um novo objeto e adicionando os valores recebido no construtor da classe User
+    const user = await uRepo.insert(u)
+
     resp = {
         status: `OK`,
-        data: `User insert with sucess.`
+        data: `User insert with id ${user.id} sucess.`
     }
     res.status(200).send(JSON.stringify(resp))
 });
