@@ -6,40 +6,22 @@ class UserRepository {
     }
 
     insert(obj){  
-        const user = User.create({//Criando um novo objeto e adicionando os valores recebido no construtor da classe User
-            nome: obj.nome,
-            email: obj.email
-        })
-        return user;
+        return User.create({ ...obj});
 
     }
 
-    update(user){
-        for(let i =0; i< this.users.length; i++){
-            if(this.users[i].id == user.uid){
-                this.users[i].nome = user.nome
-                this.users[i].email = user.email
-                return this.users[i]
-            }
-        }
+    update(obj){
+                return User.update({ ...obj}, {where: { id: obj.id}})
 
     }
 
-    delete(user){
-        for(let i =0; i< this.users.length; i++){
-            if(this.users[i].id == user.id){
-            this.users.splice(i, 1)
-            }
-        }
+    delete(obj){
+        return User.destroy({where: {id: obj.id}});
 
     }
 
-    find(uid){
-        for(let i =0; i< this.users.length; i++){
-            if(this.users[i].id == uid){
-                return this.users[i]
-            }
-        }
+    findById(id){
+        return User.findAll({where: {id: id,} });
     }
 
     findAll(){
