@@ -80,13 +80,13 @@ router.put('/:id', async (req, res) => {
                 status: `ERRO`,
                 description: `User JSON with name and must be provided.`
             };
-            res.status(400).json(resp);        }
+            res.status(400).json(resp);    
+            return;    
+    };
 
 
-    user[0].nome = u.nome
-    user[0].email = u.email
 
-    user = await uRepo.update(user[0]);
+    user = await uRepo.update(id, u);
     let resp = {
         status: `OK`,
         data: `User updater with sucess.`,
@@ -102,11 +102,11 @@ router.delete('/:id', async (req, res) => {
     let user = await uRepo.findById(id)
 
     if(user.length > 0){
-        await uRepo.delete(user);
+        await uRepo.delete(user[0]);
 
        let resp = {
             status: `OK`,
-            description: `User with id ${uid} delete`,
+            description: `User with id ${id} was delete with sucess`,
         }
 
         res.status(200).json(resp);
@@ -115,7 +115,7 @@ router.delete('/:id', async (req, res) => {
  
         let resp = {
                 status: `ERRO`,
-                data: `User delete with success.`
+                data: `User with id delete ${id}not found.`,
             }
         res.status(404).json(resp)
     }

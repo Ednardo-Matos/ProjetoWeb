@@ -10,8 +10,8 @@ class UserRepository {
 
     }
 
-    update(obj){
-                return User.update({ ...obj}, {where: { id: obj.id}})
+    update(id, obj){
+                return User.update({ ...obj}, {where: { id: id}})
 
     }
 
