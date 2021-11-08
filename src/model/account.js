@@ -1,6 +1,9 @@
 const sequelize = require('../database')
 const { Datatypes, Model, DataTypes } = require('sequelize')
 const User = require('./user')
+const Profile = require('./profile');
+const Post = require('./post');
+
 
 class Account extends Model{}
 
@@ -23,5 +26,11 @@ Account.init(
         tableName: 'accounts'
     }
 );
+Account.hasOne(Profile)
+Profile.belongsTo(Account)
+
+Account.hasMany(Post)
+Post.belongsTo(Account)
+
 
 module.exports = Account;

@@ -1,5 +1,8 @@
 const sequelize = require('../database')
-const { Datatypes, Model, DataTypes } = require('sequelize')
+const { Datatypes, Model, DataTypes } = require('sequelize');
+const { hasOne } = require('./user');
+const Account = require('./account');
+
 
 class Profile extends Model{}
 
@@ -27,3 +30,7 @@ Profile.init(
 
 
 );
+
+
+
+module.exports = Profile;

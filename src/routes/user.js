@@ -1,12 +1,12 @@
 const express = require('express')
-const router = express.Router()
+const routes = express.Router()
 const UserRepository = require('../repository/user')//Importando a classe UserRepository
 
 let uRepo = new UserRepository()
 
 
 //Buscar todos os usuarios
-router.get('/', async(_, res) => {
+routes.get('/', async(_, res) => {
 
     let  resp = {
             status: `OK`,
@@ -18,7 +18,7 @@ router.get('/', async(_, res) => {
 
 
 //Buscar um usuario com um ID
-router.get('/:id', async(req, res) => {
+routes.get('/:id', async(req, res) => {
     let id =  req.params["id"]
     let user = await uRepo.findById(id);
    
@@ -44,7 +44,7 @@ router.get('/:id', async(req, res) => {
 
 
 //Cadastrar um novo usuario 
-router.post('/', async (req, res) => {
+routes.post('/', async (req, res) => {
     let u = req.body//recebendo requisição no formato json
 
 
@@ -68,7 +68,7 @@ router.post('/', async (req, res) => {
 
 
 //Atualizar um usuario existente  com um ID
-router.put('/:id', async (req, res) => {
+routes.put('/:id', async (req, res) => {
     let id = req.params["id"];
     let u = req.body;
 
@@ -97,7 +97,7 @@ router.put('/:id', async (req, res) => {
 
 
 //Deletar um usuario existente com um ID
-router.delete('/:id', async (req, res) => {
+routes.delete('/:id', async (req, res) => {
     let id = req.params["id"]
     let user = await uRepo.findById(id)
 
@@ -122,4 +122,4 @@ router.delete('/:id', async (req, res) => {
   
 });
 
-module.exports = router
+module.exports = routes
