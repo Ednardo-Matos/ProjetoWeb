@@ -1,5 +1,7 @@
 const express = require('express');
 const userRouter = require('./user');
+const homeRoutes = require('./home_routes');
+
 
 const api = express.Router();
 api.use('/users', userRouter);
@@ -9,5 +11,6 @@ api.use('/users', userRouter);
 
 const route = express.Router();
 route.use('/api', api);
+route.use('/', homeRoutes);
 
 module.exports = route;
