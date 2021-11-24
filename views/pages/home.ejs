@@ -1,16 +1,10 @@
 <%- contentFor('body') %>
 
-
-    <h3 class="pb-4 mb-4 fst-italic border-bottom">
-      From the Firehose
-    </h3>
-
-        <%- ('../partials/categories.ejs.ejs') %>
+        <%- include('../partials/categories.ejs') %>
     <main class="container">
-
       <div class="row mb-2">
-        <%- ('../partials/big-news.ejs') %>
-        <%- ('../partials/hot-news.ejs') %>
+        <%- include('../partials/big-news.ejs') %>
+        <%- include('../partials/hot-news.ejs') %>
       </div>
 
       <div class="row g-5">
@@ -137,7 +131,7 @@
         
 
         <div class="col-md-4">
-          <%- ('../partials/right-menu.ejs') %>
+          <%- include('../partials/right-menu.ejs') %>
         </div>
       </div>  
     </main>
