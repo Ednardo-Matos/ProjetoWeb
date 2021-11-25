@@ -25,6 +25,10 @@ class AccountRepository {
       return Account.findAll({where: {id: id,} });
   }
 
+  findByUsername(username){
+    return Account.findAll({where: {username: username,} });
+}
+
   findAll(){
       return Account.findAll()
   }

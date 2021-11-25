@@ -8,6 +8,4 @@
 # npm install dotenv --save
 # npm install express ejs
 # npm install ejs express-ejs-layouts --save
-# npm install
-
-# aula 15-10-2021 1:25:0111
+# npm install bcrypt --save

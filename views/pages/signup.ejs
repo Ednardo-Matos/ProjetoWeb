@@ -3,21 +3,42 @@
 
     <h1 class="h3 mb-3 fw-normal">Inscreva-se</h1>
 
+    <% if(error) {%>
+      <div class="alert alert-danger" role="alert">
+        <%= error.message %>
+      </div>
+  <%} %>
+
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" 
-      placeholder="Nome de Usuario" name="username">
+      <% if(values) {%>
+        <input type="text" class="form-control" id="floatingInput" 
+        placeholder="Nome de Usuario" name="username" value="<%= values.username %>">
+      <%} else { %>
+        <input type="text" class="form-control" id="floatingInput" 
+        placeholder="Nome de Usuario" name="username">
+     <% }%>
       <label for="floatingInput">Nome do usuario</label>
     </div>
    
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword"
-      placeholder="Password" name="password">
+      <% if(values) {%>
+        <input type="password" class="form-control" id="floatingPassword"
+        placeholder="Password" name="password"  value="<%= values.password %>">
+      <%} else { %>
+        <input type="password" class="form-control" id="floatingPassword"
+        placeholder="Password" name="password">
+     <% }%>
       <label for="floatingPassword">Senha</label>
     </div>
 
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPasswordConfirmation"
-      placeholder="Confirmação Senha" name="passwordConfirmation">
+      <% if(values) {%>
+        <input type="password" class="form-control" id="floatingPasswordConfirmation"
+        placeholder="Confirmação Senha" name="passwordConfirmation" value="<%= values.passwordConfirmation %>">
+      <%} else { %>
+        <input type="password" class="form-control" id="floatingPasswordConfirmation"
+        placeholder="Confirmação Senha" name="passwordConfirmation">
+     <% }%>
       <label for="floatingPasswordConfirmation">Confirmação de Senha</label>
     </div>
 
