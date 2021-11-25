@@ -1,7 +1,10 @@
 const express = require('express');
 const route = express.Router();
+
 const Account = require('../model/account.js')
 const AccountRepository = require('../repository/account_repo')
+
+const aRepo = new AccountRepository()
 
 route.get("/", (req, res)=> {
     res.render('pages/home')
@@ -24,7 +27,7 @@ route.post("/signup", (req, res)=> {
         let account = {username: username,
              password: password, 
         };
-        AccountRepository.insert(account)
+        aRepo.insert(account)
 
 
     }
