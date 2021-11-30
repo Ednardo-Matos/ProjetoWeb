@@ -1,6 +1,7 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 const express = require('express');
 const route = express.Router();
+const passport = require('passport');
 
 const Account = require('../model/account.js')
 const AccountRepository = require('../repository/account_repo')
@@ -9,15 +10,23 @@ const salRounds = 12;
 const aRepo = new AccountRepository()
 
 route.get("/", (req, res)=> {
-    res.render('pages/home')
+    console.log(req.user);
+    res.render("pages/home", {user: req.user});
 });
 
-route.get("/signin", (_, res)=> {
-    res.render('pages/signin')
+route.get("/signin", (req, res)=> {
+res.render('pages/signin', { user: req.user, error: req.flash('error')[0], values: null})
 });
 
-route.get("/signup", (_, res)=> {
-    res.render('pages/signup', {error:null, values: null})
+route.post("/signin", passport.authenticate('local', {
+        successRedirect: "/",
+        failureRedirect: "/signin",
+        failureFlash: true
+    })
+);
+
+route.get("/signup", (req, res)=> {
+    res.render('pages/signup', {user: req.user, error:null, values: null})
 });
 
 route.post("/signup", async(req, res)=> {
@@ -39,7 +48,7 @@ route.post("/signup", async(req, res)=> {
 
             aRepo.insert(account)
 
-            res.render("pages/signup_ok")
+            res.render("pages/signup_ok", {user: req.user});
             });
 
         }else{
@@ -52,7 +61,7 @@ route.post("/signup", async(req, res)=> {
                 password: password,
                 passwordConfirmation: passwordConfirmation
             }
-            res.render('pages/signup', {error: error, values: values})
+            res.render('pages/signup', {user: req.user, error: error, values: values})
         }
 
     }else{
@@ -65,7 +74,7 @@ route.post("/signup", async(req, res)=> {
             password: password,
             passwordConfirmation: passwordConfirmation
         }
-        res.render('pages/signup', {error: error, values: values})
+        res.render('pages/signup', {user: req.user, error: error, values: values})
     }
 
 });

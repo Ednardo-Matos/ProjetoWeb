@@ -1,0 +1,28 @@
+<%- contentFor('body') %>
+
+<main class="container">
+<h1>Categorias</h1>
+<a class="btn btn-primary" href="/admpanel/categories/new" role="button">Novo</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% categories.forEach((category) =>{%>
+        <tr>
+          <th scope="row"><%= category.id %></th>
+          <td><%= category.name %></td>
+          <td><%= category.description %></td>
+          <th></th>
+        </tr>
+      <% })%>
+
+    </tbody>
+  </table>
+
+</main>
