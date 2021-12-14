@@ -79,6 +79,7 @@ app.use('/', routes)
 
 //Servidor
 app.listen(port, async() => {
-    await database.sync({force: true})
+   // await database.sync({force: true})
+    await database.sync();
     console.log(`O servidor está sendo executado na porta: ${port}`)
 })

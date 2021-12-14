@@ -1,0 +1,74 @@
+<form method="post" action="<%= options.url %>">
+  <h1 class="h3 mb-3 fw-normal"><%= options.formName %></h1>
+  <% if (error) { %>
+      <div class="alert alert-danger" role="alert">
+        <%= error.message %>
+      </div>
+    <% } %>
+  <div class="form-floating">
+    <% if(options.category) {%>
+      <input
+      type="hidden"
+      class="form-control"
+      id="floatingInput" 
+      placeholder="Id" 
+      name="id" 
+      value="<%= options.category.id %>"
+      />
+      <% } else {%>
+      <input
+      type="hidden"
+      class="form-control"
+      id="floatingInput" 
+      placeholder="id" 
+      name="id" 
+      />
+      <% } %>
+
+    </div>
+    <div class="form-floating">
+      <% if(options.category) {%>
+        <input
+        type="text"
+        class="form-control"
+        id="floatingInput" 
+        placeholder="Descrição" 
+        name="name" 
+        value="<%= options.category.name %>"
+        />
+        <% } else {%>
+        <input
+        type="text"
+        class="form-control"
+        id="floatingInput" 
+        placeholder="Nome" 
+        name="name" 
+        />
+        <% } %>
+        <label for="floatingInput">Nome</label>
+        </div>
+        <div class="form-floating">
+          <% if(options.category) {%>
+            <input
+            type="text"
+            class="form-control"
+            id="floatingInput" 
+            placeholder="Descrição" 
+            name="description" 
+            value="<%= options.category.description %>"
+            />
+            <% } else {%>
+            <input
+            type="text"
+            class="form-control"
+            id="floatingInput" 
+            placeholder="Descrição" 
+            name="description" 
+            />
+            <% } %>
+            <label for="floatingInput">Descricão</label>
+        </div>
+       
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+  </form>
+  //<%= options.buttonName %>
